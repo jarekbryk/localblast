@@ -6,9 +6,9 @@ I included a short presentation on BLAST and the syntax of its run, as well as a
 
 ### The query and the database
 
-The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from Agilent's _D. melanogaster_ gene expression microarray in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB.
+The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB.
 
-The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is available to download from Figshare and the compressed file is 100 MB.
+The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB.
 
 I created those to map Agilent probes agains known and predicted transcripts to eliminate probes that do now align well. I used this data in the upcoming publication XXX.
 
