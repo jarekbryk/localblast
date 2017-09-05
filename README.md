@@ -10,13 +10,13 @@ The query for this exercise is a list of 32162 sequences of all unique oligonucl
 
 The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB.
 
-I created those to map Agilent probes against known and predicted transcripts to eliminate probes that do now align well. I used this data in the upcoming publication XXX. If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
+I created those to map Agilent probes against known and predicted transcripts to eliminate probes that do not align well. I used this data in the upcoming publication XXX. If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
 
 ### BLAST off!
 
-Set up a new folder for your analysis and put the query file in that folder. Make a subfolder `fly` inside it for the database. Then you can run a megablast of the query against the database with the following command:
+To run the BLAST (assuming it is installed), set up a new folder (say, `blast_practice`) for your analysis and put the query file in that folder. Download the database and unzip it into the folder. The database will unzip into its own folder called `Dmel_transcripts_Ensembl`. Then, assuming you are now in the `blast_practice` folder, you can run a megablast of the query against the database with the following command:
 
-`blastn -task megablast -db fly/Dmel_genes_all.fa -query blast_query.txt -dust no -max_target_seqs 1 -outfmt "6 qseqid sseqid evalue pident stitle" -out outputfile.txt`
+`blastn -task megablast -db Dmel_transcripts_Ensembl/Dmel_genes_all.fa -query blast_query.txt -dust no -max_target_seqs 1 -outfmt "6 qseqid sseqid evalue pident stitle" -out outputfile.txt`
 
 The various options are explained in the presentation and in the section **BLAST options** below.
 
