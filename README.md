@@ -326,8 +326,8 @@ Nucleotide-Nucleotide BLAST 2.2.31+
 ### Formatting options
 
 - `-outfmt <String>` alignment view options:
- 	`0` = pairwise,
- 	`1` = query-anchored showing identities,
+ 	- `0` = pairwise,
+ 	- `1` = query-anchored showing identities,
  	`2` = query-anchored no identities,
  	`3` = flat query-anchored, show identities,
  	`4` = flat query-anchored, no identities,
