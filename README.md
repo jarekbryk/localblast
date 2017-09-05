@@ -295,7 +295,9 @@ Nucleotide-Nucleotide BLAST 2.2.31+
 **OPTIONAL ARGUMENTS**
 
 `-h` Print USAGE and DESCRIPTION; ignore all other parameters
+
 `-help` Print USAGE, DESCRIPTION and ARGUMENTS; ignore all other parameters
+
 `-version` Print version number; ignore other arguments
 
 ### Input query options
