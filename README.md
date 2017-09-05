@@ -300,32 +300,32 @@ Nucleotide-Nucleotide BLAST 2.2.31+
 
 ### Input query options
 
-`-query <File_In>` Input file name; Default = '-'
-`-query_loc <String>` Location on the query sequence in 1-based offsets (Format: start-stop)
-`-strand <String, 'both', 'minus', 'plus'>` Query strand(s) to search against database/subject; Default = 'both'
+- `-query <File_In>` Input file name; Default = '-'
+- `-query_loc <String>` Location on the query sequence in 1-based offsets (Format: start-stop)
+- `-strand <String, 'both', 'minus', 'plus'>` Query strand(s) to search against database/subject; Default = 'both'
 
 ### General search options
  
-`-task <String, Permissible values: 'blastn' 'blastn-short' 'dc-megablast' 'megablast' 'rmblastn' >` Task to execute; Default = `megablast`
-`-db <String>` BLAST database name; Incompatible with: `subject, subject_loc`
-`-out <File_Out>` Output file name; Default = `-`
-`-evalue <Real>` Expectation value (E) threshold for saving hits; Default = `10`
-`-word_size <Integer, >=4>` Word size for wordfinder algorithm (length of best perfect match)
-`-gapopen <Integer>` Cost to open a gap
-`-gapextend <Integer>` Cost to extend a gap
-`-penalty <Integer, <=0>` Penalty for a nucleotide mismatch
-`-reward <Integer, >=0>` Reward for a nucleotide match
-`-use_index <Boolean>` Use MegaBLAST database index; Default = `false`
-`-index_name <String>` MegaBLAST database index name
+- `-task <String, Permissible values: 'blastn' 'blastn-short' 'dc-megablast' 'megablast' 'rmblastn' >` Task to execute; Default = `megablast`
+- `-db <String>` BLAST database name; Incompatible with: `subject, subject_loc`
+- `-out <File_Out>` Output file name; Default = - `-`
+- `-evalue <Real>` Expectation value (E) threshold for saving hits; Default = `10`
+- `-word_size <Integer, >=4>` Word size for wordfinder algorithm (length of best perfect match)
+- `-gapopen <Integer>` Cost to open a gap
+- `-gapextend <Integer>` Cost to extend a gap
+- `-penalty <Integer, <=0>` Penalty for a nucleotide mismatch
+- `-reward <Integer, >=0>` Reward for a nucleotide match
+- `-use_index <Boolean>` Use MegaBLAST database index; Default = `false`
+- `-index_name <String>` MegaBLAST database index name
 
 ### BLAST-2-Sequences options
  
-`-subject <File_In>` Subject sequence(s) to search; Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask`
-`-subject_loc <String>` Location on the subject sequence in 1-based offsets (Format: start-stop); Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask, remote`
+- `-subject <File_In>` Subject sequence(s) to search; Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask`
+- `-subject_loc <String>` Location on the subject sequence in 1-based offsets (Format: start-stop); Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask, remote`
 
 ### Formatting options
 
-`-outfmt <String>` alignment view options:
+- `-outfmt <String>` alignment view options:
  	`0` = pairwise,
  	`1` = query-anchored showing identities,
  	`2` = query-anchored no identities,
@@ -389,70 +389,70 @@ Options `6`, `7`, and `10` can be additionally configured to produce a custom fo
  	`qcovhsp` means Query Coverage Per HSP
  	`qcovus` is a measure of Query Coverage that counts a position in a subject sequence for this measure only once. The second time the position is aligned to the query is not counted towards this measure.
 
-When `-outfmt` options are not specified, the default value is: `qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore`, which is equivalent to the keyword `std`; 
+When - `-outfmt` options are not specified, the default value is: `qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore`, which is equivalent to the keyword `std`; 
 
-`-show_gis` Show NCBI GIs in deflines
-`-num_descriptions <Integer, >=0>` Number of database sequences to show one-line descriptions for; Not applicable for `outfmt >4`; Default = `500`; Incompatible with: `max_target_seqs`
-`-num_alignments <Integer, >=0>` Number of database sequences to show alignments for; Default = `250`; Incompatible with: `max_target_seqs`
-`-line_length <Integer, >=1>` Line length for formatting alignments; Not applicable for `outfmt >4`; Default = `60`
-`-html` Produce HTML output
+- `-show_gis` Show NCBI GIs in deflines
+- `-num_descriptions <Integer, >=0>` Number of database sequences to show one-line descriptions for; Not applicable for `outfmt >4`; Default = `500`; Incompatible with: `max_target_seqs`
+- `-num_alignments <Integer, >=0>` Number of database sequences to show alignments for; Default = `250`; Incompatible with: `max_target_seqs`
+- `-line_length <Integer, >=1>` Line length for formatting alignments; Not applicable for `outfmt >4`; Default = `60`
+- `-html` Produce HTML output
 
 ### Query filtering options
 
-`-dust <String>` Filter query sequence with DUST (Format: 'yes', 'level window linker', or 'no' to disable); Default = `20 64 1`
-`-filtering_db <String>` BLAST database containing filtering elements (i.e.: repeats)
-`-window_masker_taxid <Integer>` Enable WindowMasker filtering using a Taxonomic ID
-`-window_masker_db <String>` Enable WindowMasker filtering using this repeats database.
-`-soft_masking <Boolean>` Apply filtering locations as soft masks
+- `-dust <String>` Filter query sequence with DUST (Format: 'yes', 'level window linker', or 'no' to disable); Default = `20 64 1`
+- `-filtering_db <String>` BLAST database containing filtering elements (i.e.: repeats)
+- `-window_masker_taxid <Integer>` Enable WindowMasker filtering using a Taxonomic ID
+- `-window_masker_db <String>` Enable WindowMasker filtering using this repeats database.
+- `-soft_masking <Boolean>` Apply filtering locations as soft masks
  Default = `true'
-`-lcase_masking
+- `-lcase_masking
  Use lower case filtering in query and subject sequence(s)?
 
 ### Restrict search or results
 
-`-gilist <String>` Restrict search of database to list of GI's; Incompatible with: `negative_gilist, seqidlist, remote, subject, subject_loc`
-`-seqidlist <String>` Restrict search of database to list of SeqId's; Incompatible with: `gilist, negative_gilist, remote, subject, subject_loc`
-`-negative_gilist <String>` Restrict search of database to everything except the listed GIs; Incompatible with: `gilist, seqidlist, remote, subject, subject_loc`
-`-entrez_query <String>` Restrict search with the given Entrez query; Requires: `remote`
-`-db_soft_mask <String>` Filtering algorithm ID to apply to the BLAST database as soft masking; Incompatible with: `db_hard_mask, subject, subject_loc`
-`-db_hard_mask <String>` Filtering algorithm ID to apply to the BLAST database as hard masking; Incompatible with: `db_soft_mask, subject, subject_loc`
-`-perc_identity <Real, 0..100>` Percent identity
-`-qcov_hsp_perc <Real, 0..100>` Percent query coverage per hsp
-`-max_hsps <Integer, >=1>` Set maximum number of HSPs per subject sequence to save for each query
-`-culling_limit <Integer, >=0>` If the query range of a hit is enveloped by that of at least this many higher-scoring hits, delete the hit; Incompatible with: `best_hit_overhang, best_hit_score_edge`
-`-best_hit_overhang <Real, (>0 and <0.5)>` Best Hit algorithm overhang value (recommended value: 0.1); Incompatible with: `culling_limit`
-`-best_hit_score_edge <Real, (>0 and <0.5)>` Best Hit algorithm score edge value (recommended value: 0.1); Incompatible with: `culling_limit`
-`-max_target_seqs <Integer, >=1>` Maximum number of aligned sequences to keep; Not applicable for `outfmt <=4`; Default = `500`; Incompatible with: `num_descriptions, num_alignments`
+- `-gilist <String>` Restrict search of database to list of GI's; Incompatible with: `negative_gilist, seqidlist, remote, subject, subject_loc`
+- `-seqidlist <String>` Restrict search of database to list of SeqId's; Incompatible with: `gilist, negative_gilist, remote, subject, subject_loc`
+- `-negative_gilist <String>` Restrict search of database to everything except the listed GIs; Incompatible with: `gilist, seqidlist, remote, subject, subject_loc`
+- `-entrez_query <String>` Restrict search with the given Entrez query; Requires: `remote`
+- `-db_soft_mask <String>` Filtering algorithm ID to apply to the BLAST database as soft masking; Incompatible with: `db_hard_mask, subject, subject_loc`
+- `-db_hard_mask <String>` Filtering algorithm ID to apply to the BLAST database as hard masking; Incompatible with: `db_soft_mask, subject, subject_loc`
+- `-perc_identity <Real, 0..100>` Percent identity
+- `-qcov_hsp_perc <Real, 0..100>` Percent query coverage per hsp
+- `-max_hsps <Integer, >=1>` Set maximum number of HSPs per subject sequence to save for each query
+- `-culling_limit <Integer, >=0>` If the query range of a hit is enveloped by that of at least this many higher-scoring hits, delete the hit; Incompatible with: `best_hit_overhang, best_hit_score_edge`
+- `-best_hit_overhang <Real, (>0 and <0.5)>` Best Hit algorithm overhang value (recommended value: 0.1); Incompatible with: `culling_limit`
+- `-best_hit_score_edge <Real, (>0 and <0.5)>` Best Hit algorithm score edge value (recommended value: 0.1); Incompatible with: `culling_limit`
+- `-max_target_seqs <Integer, >=1>` Maximum number of aligned sequences to keep; Not applicable for `outfmt <=4`; Default = `500`; Incompatible with: `num_descriptions, num_alignments`
 
 ### Discontiguous MegaBLAST options
 
-`-template_type <String, coding, coding_and_optimal, optimal>` Discontiguous MegaBLAST template type; Requires: `template_length`
-`-template_length <Integer, Permissible values: 16, 18, 21>` Discontiguous MegaBLAST template length; Requires: `template_type`
+- `-template_type <String, coding, coding_and_optimal, optimal>` Discontiguous MegaBLAST template type; Requires: `template_length`
+- `-template_length <Integer, Permissible values: 16, 18, 21>` Discontiguous MegaBLAST template length; Requires: `template_type`
 
 ### Statistical options
 
-`-dbsize <Int8>` Effective length of the database 
-`-searchsp <Int8, >`=0>` Effective length of the search space
-`-sum_stats <Boolean>` Use sum statistics
+- `-dbsize <Int8>` Effective length of the database 
+- `-searchsp <Int8, >`=0>` Effective length of the search space
+- `-sum_stats <Boolean>` Use sum statistics
 
 ### Search strategy options
 
-`-import_search_strategy <File_In>` Search strategy to use; Incompatible with:  `export_search_strategy`
-`-export_search_strategy <File_Out>` File name to record the search strategy used; Incompatible with: `import_search_strategy`
+- `-import_search_strategy <File_In>` Search strategy to use; Incompatible with:  `export_search_strategy`
+- `-export_search_strategy <File_Out>` File name to record the search strategy used; Incompatible with: `import_search_strategy`
 
 ### Extension options
  
-`-xdrop_ungap <Real>` X-dropoff value (in bits) for ungapped extensions
-`-xdrop_gap <Real>` X-dropoff value (in bits) for preliminary gapped extensions
-`-xdrop_gap_final <Real>` X-dropoff value (in bits) for final gapped alignment
-`-no_greedy` Use non-greedy dynamic programming extension
-`-min_raw_gapped_score <Integer>` Minimum raw gapped score to keep an alignment in the preliminary gapped and traceback stages
-`-ungapped` Perform ungapped alignment only
-`-window_size <Integer, >=0>` Multiple hits window size, use 0 to specify 1-hit algorithm
-`-off_diagonal_range <Integer, >=0>` Number of off-diagonals to search for the 2nd hit, use `0` to turn off; Default = `0`
+- `-xdrop_ungap <Real>` X-dropoff value (in bits) for ungapped extensions
+- `-xdrop_gap <Real>` X-dropoff value (in bits) for preliminary gapped extensions
+- `-xdrop_gap_final <Real>` X-dropoff value (in bits) for final gapped alignment
+- `-no_greedy` Use non-greedy dynamic programming extension
+- `-min_raw_gapped_score <Integer>` Minimum raw gapped score to keep an alignment in the preliminary gapped and traceback stages
+- `-ungapped` Perform ungapped alignment only
+- `-window_size <Integer, >=0>` Multiple hits window size, use 0 to specify 1-hit algorithm
+- `-off_diagonal_range <Integer, >=0>` Number of off-diagonals to search for the 2nd hit, use `0` to turn off; Default = `0`
 
 ### Miscellaneous options
 
-`-parse_deflines` Should the query and subject defline(s) be parsed?
-`-num_threads <Integer, >=1>` Number of threads (CPUs) to use in the BLAST search; Default = `1`; Incompatible with: `remote`
-`-remote` Execute search remotely?; * Incompatible with: `gilist, seqidlist, negative_gilist, subject_loc, num_threads`
+- `-parse_deflines` Should the query and subject defline(s) be parsed?
+- `-num_threads <Integer, >=1>` Number of threads (CPUs) to use in the BLAST search; Default = `1`; Incompatible with: `remote`
+- `-remote` Execute search remotely?; * Incompatible with: `gilist, seqidlist, negative_gilist, subject_loc, num_threads`
