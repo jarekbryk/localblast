@@ -4,19 +4,23 @@ These are the instructions on how to set up BLAST on your local machine (as oppo
 
 I included a short presentation on BLAST and the syntax of its run, as well as an example query and a database (see details below) so that you could try it yourself. What I do _not_ cover in these instructions is how to prepare a custom BLAST database from your sequences (if you can't rely on ready-made databases at NCBI), but it is covered in section 7 of the description of BLAST databases from NCBI (included here in full, below).
 
-####The query and the database
+###The query and the database
 
 The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB.
 
 The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB.
 
-I created those to map Agilent probes agains known and predicted transcripts to eliminate probes that do now align well. I used this data in the upcoming publication XXX.
+I created those to map Agilent probes against known and predicted transcripts to eliminate probes that do now align well. I used this data in the upcoming publication XXX. If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
 
 ###BLAST off!
 
+Set up a new folder for your analysis and put the query file in that folder. Make a subfolder `fly` inside it for the database. Then you can run a megablast of the query against the database with the following command:
+
 `blastn -task megablast -db fly/Dmel_genes_all.fa -query blast_query.txt -dust no -max_target_seqs 1 -outfmt "6 qseqid sseqid evalue pident stitle" -out outputfile.txt`
 
-### Useful links
+The various options are explained in the presentation and in the section **BLAST options** below.
+
+###Useful links
 
 - [Download BLAST Software and Databases Documentation](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download)
 
@@ -38,7 +42,9 @@ I created those to map Agilent probes agains known and predicted transcripts to 
 
 - [BLAST Glossary - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK62051/)
 
-####BLAST databases available at NCBI
+###BLAST databases available at NCBI
+
+This is copied directly from the NCBI website and it was up to date as of March 6th, 2017.
 
 <pre>
                          The BLAST Databases
@@ -128,14 +134,14 @@ gss.*tar.gz                   | Sequences from the GSS division of GenBank,
                                 EMBL, and DDBJ
 htgs.*tar.gz                  | Sequences from the HTG division of GenBank, EMBL,
                                 and DDBJ
-human_genomic.*tar.gz         | Human RefSeq (NC_######) chromosome records with 
+human_genomic.*tar.gz         | Human RefSeq (NC_#####) chromosome records with 
                                 gap adjusted concatenated NT_ contigs
 nr.*tar.gz                    | Non-redundant protein sequences from GenPept, 
                                 Swissprot, PIR, PDF, PDB, and NCBI RefSeq
 nt.*tar.gz                    | Partially non-redundant nucleotide sequences from 
                                 all traditional divisions of GenBank, EMBL, and DDBJ 
                                 excluding GSS,STS, PAT, EST, HTG, and WGS.
-other_genomic.*tar.gz         | RefSeq chromosome records (NC_######) for non-human
+other_genomic.*tar.gz         | RefSeq chromosome records (NC_#####) for non-human
                                 organisms
 pataa.*tar.gz                 | Patent protein sequences
 patnt.*tar.gz                 | Patent nucleotide sequences. Both patent databases
@@ -182,7 +188,7 @@ gss.gz*                 | sequences from the GSS division of GenBank, EMBL,
                           and DDBJ
 htgs.gz*                | sequences from the HTG division of GenBank, EMBL, 
                           and DDBJ 
-human_genomic.gz*       | human RefSeq (NC_######) chromosome records
+human_genomic.gz*       | human RefSeq (NC_#####) chromosome records
                           with gap adjusted concatenated NT_ contigs 
 igSeqNt.gz              | human and mouse immunoglobulin variable region 
                           nucleotide sequences
@@ -196,7 +202,7 @@ nt.gz*                  | nucleotide sequence database, with entries from all
                           traditional divisions of GenBank, EMBL, and DDBJ; 
                           excluding bulk divisions (gss, sts, pat, est, htg) 
                           and wgs entries. Partially non-redundant.
-other_genomic.gz*       | RefSeq chromosome records (NC_######) for organisms 
+other_genomic.gz*       | RefSeq chromosome records (NC_#####) for organisms 
                           other than human
 pataa.gz*               | patent protein sequences
 patnt.gz*               | patent nucleotide sequences. Both patent sequence 
@@ -276,7 +282,7 @@ NCBI User Service at:
       info@ncbi.nlm.nih.gov
 </pre>
 
-####BLAST options
+###BLAST options
 
 **DESCRIPTION**
 
@@ -292,13 +298,13 @@ Nucleotide-Nucleotide BLAST 2.2.31+
 `-help` Print USAGE, DESCRIPTION and ARGUMENTS; ignore all other parameters
 `-version` Print version number; ignore other arguments
 
-####Input query options
+###Input query options
 
 `-query <File_In>` Input file name; Default = '-'
 `-query_loc <String>` Location on the query sequence in 1-based offsets (Format: start-stop)
 `-strand <String, 'both', 'minus', 'plus'>` Query strand(s) to search against database/subject; Default = 'both'
 
-####General search options
+###General search options
  
 `-task <String, Permissible values: 'blastn' 'blastn-short' 'dc-megablast' 'megablast' 'rmblastn' >` Task to execute; Default = `megablast`
 `-db <String>` BLAST database name; Incompatible with: `subject, subject_loc`
@@ -312,12 +318,12 @@ Nucleotide-Nucleotide BLAST 2.2.31+
 `-use_index <Boolean>` Use MegaBLAST database index; Default = `false`
 `-index_name <String>` MegaBLAST database index name
 
-####BLAST-2-Sequences options
+###BLAST-2-Sequences options
  
 `-subject <File_In>` Subject sequence(s) to search; Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask`
 `-subject_loc <String>` Location on the subject sequence in 1-based offsets (Format: start-stop); Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask, remote`
 
-####Formatting options
+###Formatting options
 
 `-outfmt <String>` alignment view options:
  	`0` = pairwise,
@@ -381,8 +387,9 @@ Options `6`, `7`, and `10` can be additionally configured to produce a custom fo
  	`sstrand` means Subject Strand
  	`qcovs` means Query Coverage Per Subject
  	`qcovhsp` means Query Coverage Per HSP
+ 	`qcovus` is a measure of Query Coverage that counts a position in a subject sequence for this measure only once. The second time the position is aligned to the query is not counted towards this measure.
 
-When not provided, the default value is: `qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore`, which is equivalent to the keyword `std`; 
+When `-outfmt` options are not specified, the default value is: `qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore`, which is equivalent to the keyword `std`; 
 
 `-show_gis` Show NCBI GIs in deflines
 `-num_descriptions <Integer, >=0>` Number of database sequences to show one-line descriptions for; Not applicable for `outfmt >4`; Default = `500`; Incompatible with: `max_target_seqs`
@@ -390,9 +397,9 @@ When not provided, the default value is: `qseqid sseqid pident length mismatch g
 `-line_length <Integer, >=1>` Line length for formatting alignments; Not applicable for `outfmt >4`; Default = `60`
 `-html` Produce HTML output
 
-####Query filtering options
+###Query filtering options
 
-`- <String>` Filter query sequence with DUST (Format: 'yes', 'level window linker', or 'no' to disable); Default = `20 64 1`
+`-dust <String>` Filter query sequence with DUST (Format: 'yes', 'level window linker', or 'no' to disable); Default = `20 64 1`
 `-filtering_db <String>` BLAST database containing filtering elements (i.e.: repeats)
 `-window_masker_taxid <Integer>` Enable WindowMasker filtering using a Taxonomic ID
 `-window_masker_db <String>` Enable WindowMasker filtering using this repeats database.
@@ -401,7 +408,7 @@ When not provided, the default value is: `qseqid sseqid pident length mismatch g
 `-lcase_masking
  Use lower case filtering in query and subject sequence(s)?
 
-####Restrict search or results
+###Restrict search or results
 
 `-gilist <String>` Restrict search of database to list of GI's; Incompatible with: `negative_gilist, seqidlist, remote, subject, subject_loc`
 `-seqidlist <String>` Restrict search of database to list of SeqId's; Incompatible with: `gilist, negative_gilist, remote, subject, subject_loc`
@@ -417,23 +424,23 @@ When not provided, the default value is: `qseqid sseqid pident length mismatch g
 `-best_hit_score_edge <Real, (>0 and <0.5)>` Best Hit algorithm score edge value (recommended value: 0.1); Incompatible with: `culling_limit`
 `-max_target_seqs <Integer, >=1>` Maximum number of aligned sequences to keep; Not applicable for `outfmt <=4`; Default = `500`; Incompatible with: `num_descriptions, num_alignments`
 
-####Discontiguous MegaBLAST options
+###Discontiguous MegaBLAST options
 
 `-template_type <String, coding, coding_and_optimal, optimal>` Discontiguous MegaBLAST template type; Requires: `template_length`
 `-template_length <Integer, Permissible values: 16, 18, 21>` Discontiguous MegaBLAST template length; Requires: `template_type`
 
-####Statistical options
+###Statistical options
 
 `-dbsize <Int8>` Effective length of the database 
 `-searchsp <Int8, >`=0>` Effective length of the search space
 `-sum_stats <Boolean>` Use sum statistics
 
-####Search strategy options
+###Search strategy options
 
 `-import_search_strategy <File_In>` Search strategy to use; Incompatible with:  `export_search_strategy`
 `-export_search_strategy <File_Out>` File name to record the search strategy used; Incompatible with: `import_search_strategy`
 
-####Extension options
+###Extension options
  
 `-xdrop_ungap <Real>` X-dropoff value (in bits) for ungapped extensions
 `-xdrop_gap <Real>` X-dropoff value (in bits) for preliminary gapped extensions
@@ -444,7 +451,7 @@ When not provided, the default value is: `qseqid sseqid pident length mismatch g
 `-window_size <Integer, >=0>` Multiple hits window size, use 0 to specify 1-hit algorithm
 `-off_diagonal_range <Integer, >=0>` Number of off-diagonals to search for the 2nd hit, use `0` to turn off; Default = `0`
 
-####Miscellaneous options
+###Miscellaneous options
 
 `-parse_deflines` Should the query and subject defline(s) be parsed?
 `-num_threads <Integer, >=1>` Number of threads (CPUs) to use in the BLAST search; Default = `1`; Incompatible with: `remote`
