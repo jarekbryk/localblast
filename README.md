@@ -344,6 +344,7 @@ Nucleotide-Nucleotide BLAST 2.2.31+
  
 Options `6`, `7`, and `10` can be additionally configured to produce a custom format specified by space delimited format specifiers. The supported format specifiers are:
 
+- `-outfmt <String>`
 	- `qseqid` means Query Seq-id
 	- `qgi` means Query GI
 	- `qacc` means Query accesion
