@@ -391,7 +391,7 @@ Options `6`, `7`, and `10` can be additionally configured to produce a custom fo
 	- `qcovhsp` means Query Coverage Per HSP
 	- `qcovus` is a measure of Query Coverage that counts a position in a subject sequence for this measure only once. The second time the position is aligned to the query is not counted towards this measure.
 
-When - `-outfmt` options are not specified, the default value is: `qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore`, which is equivalent to the keyword `std`; 
+When - `-outfmt` options are not specified, the default value is: `qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore`, which is equivalent to the keyword `std`.
 
 - `-show_gis` Show NCBI GIs in deflines
 - `-num_descriptions <Integer, >=0>` Number of database sequences to show one-line descriptions for; Not applicable for `outfmt >4`; Default = `500`; Incompatible with: `max_target_seqs`
