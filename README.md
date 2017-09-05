@@ -326,21 +326,21 @@ Nucleotide-Nucleotide BLAST 2.2.31+
 ### Formatting options
 
 - `-outfmt <String>` alignment view options:
- 	- `0` = pairwise,
- 	- `1` = query-anchored showing identities,
- 	- `2` = query-anchored no identities,
- 	- `3` = flat query-anchored, show identities,
- 	- `4` = flat query-anchored, no identities,
- 	- `5` = XML Blast output,
- 	- `6` = tabular,
- 	- `7` = tabular with comment lines,
- 	- `8` = Text ASN.1,
- 	- `9` = Binary ASN.1,
- 	- `10` = Comma-separated values,
- 	- `11` = BLAST archive format (ASN.1),
- 	- `12` = JSON Seqalign output,
- 	- `13` = JSON Blast output,
- 	- `14` = XML2 Blast output
+	`0` = pairwise,
+	`1` = query-anchored showing identities,
+	`2` = query-anchored no identities,
+	`3` = flat query-anchored, show identities,
+	`4` = flat query-anchored, no identities,
+	`5` = XML Blast output,
+	`6` = tabular,
+	`7` = tabular with comment lines,
+	`8` = Text ASN.1,
+	`9` = Binary ASN.1,
+	`10` = Comma-separated values,
+	`11` = BLAST archive format (ASN.1),
+	`12` = JSON Seqalign output,
+	`13` = JSON Blast output,
+	`14` = XML2 Blast output
  
 Options `6`, `7`, and `10` can be additionally configured to produce a custom format specified by space delimited format specifiers. The supported format specifiers are:
 
