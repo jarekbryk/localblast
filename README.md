@@ -1,12 +1,22 @@
 ## README
 
-These are the instructions on how to set up BLAST on your local machine (as opposed to run it at NCBI on the web). It is useful if you have lots of sequences to BLAST or if you want to manipulate its output for easier processing downstream.
+Here are some instructions on how to set up BLAST on your local machine (as opposed to run it at NCBI on the web). It is useful if you have lots of sequences to BLAST or if you want to manipulate its output for easier processing downstream.
 
 I included a short presentation on BLAST and the syntax of its run, as well as an example query and a database (see details below) so that you could try it yourself. What I do _not_ cover in these instructions is how to prepare a custom BLAST database from your sequences (if you can't rely on ready-made databases at NCBI), but it is covered in section 7 of the description of BLAST databases from NCBI (included here in full, below).
 
-### The query and the database
+### Download and install the programme
 
-The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB.
+- [Download BLAST Software and Databases Documentation](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download)
+
+- [Standalone BLAST Setup for Unix - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK52640/)
+
+- [Standalone BLAST Setup for Windows PC - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK52637/)
+
+### Prepare the query
+
+The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB. Download the query and unzip it into a folder (let's call it `blast_pratice` for the purpose of this exercise).
+
+### Prepare the database
 
 The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB.
 
@@ -22,8 +32,6 @@ The various options are explained in the presentation and in the section **BLAST
 
 ### Useful links
 
-- [Download BLAST Software and Databases Documentation](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download)
-
 - [BLAST® Command Line Applications User Manual - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK279690/)
 
 - [BLAST+ features - BLAST® Command Line Applications User Manual - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK279668/#usermanual.Custom_output_formats_for_BLA)
@@ -33,10 +41,6 @@ The various options are explained in the presentation and in the section **BLAST
 - [Options for the command-line applications. - BLAST® Command Line Applications User Manual - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK279675/)
 
 - [BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK1762/)
-
-- [Standalone BLAST Setup for Unix - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK52640/)
-
-- [Standalone BLAST Setup for Windows PC - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK52637/)
 
 - [Taxonomy browser (Mus musculus)](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=10090&amp;lvl=3&amp;lin=f&amp;keep=1&amp;srchmode=1&amp;unlock)
 
