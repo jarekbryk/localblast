@@ -20,7 +20,7 @@ The query for this exercise is a list of 32162 sequences of all unique oligonucl
 
 The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB. Download it and unzip into the `blast_practice` folder - it will unzip into its own folder called `Dmel_transcripts_Ensembl`.
 
-I created those to map Agilent probes against known and predicted transcripts to eliminate probes that do not align well. I used this data in the upcoming publication XXX. If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
+I originally created the database to map Agilent probes against known and predicted transcripts to eliminate probes that do not align well. I used this data in the upcoming publication (TBA). If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
 
 ### BLAST off!
 
