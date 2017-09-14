@@ -14,17 +14,17 @@ I included a short presentation on BLAST and the syntax of its run, as well as a
 
 ### Prepare the query
 
-The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB. Download the query and unzip it into a folder (let's call it `blast_pratice` for the purpose of this exercise).
+The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB. Download the query and unzip it into a folder (let's call the folder `blast_pratice` for the purpose of this exercise).
 
 ### Prepare the database
 
-The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB.
+The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB. Download it and unzip into the `blast_practice` folder - it will unzip into its own folder called `Dmel_transcripts_Ensembl`.
 
 I created those to map Agilent probes against known and predicted transcripts to eliminate probes that do not align well. I used this data in the upcoming publication XXX. If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
 
 ### BLAST off!
 
-To run the BLAST (assuming it is installed), set up a new folder (say, `blast_practice`) for your analysis and put the query file in that folder. Download the database and unzip it into the folder. The database will unzip into its own folder called `Dmel_transcripts_Ensembl`. Then, assuming you are now in the `blast_practice` folder, you can run a megablast of the query against the database with the following command:
+To run the BLAST (assuming it is installed), enter the `blast_practice` folder and run a megablast of the query against the database with the following command:
 
 `blastn -task megablast -db Dmel_transcripts_Ensembl/Dmel_genes_all.fa -query blast_query.txt -dust no -max_target_seqs 1 -outfmt "6 qseqid sseqid evalue pident stitle" -out outputfile.txt`
 
