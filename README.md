@@ -1,24 +1,38 @@
-##README
+## README
 
-These are the instructions on how to set up BLAST on your local machine (as opposed to run it at NCBI on the web). It is useful if you have lots of sequences to BLAST or if you want to manipulate its output for easier processing downstream.
+Here are some instructions on how to set up BLAST on your local machine (as opposed to run it at NCBI on the web). It is useful if you have lots of sequences to BLAST or if you want to manipulate its output for easier processing downstream.
 
 I included a short presentation on BLAST and the syntax of its run, as well as an example query and a database (see details below) so that you could try it yourself. What I do _not_ cover in these instructions is how to prepare a custom BLAST database from your sequences (if you can't rely on ready-made databases at NCBI), but it is covered in section 7 of the description of BLAST databases from NCBI (included here in full, below).
 
-####The query and the database
-
-The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB.
-
-The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB.
-
-I created those to map Agilent probes agains known and predicted transcripts to eliminate probes that do now align well. I used this data in the upcoming publication XXX.
-
-###BLAST off!
-
-`blastn -task megablast -db fly/Dmel_genes_all.fa -query blast_query.txt -dust no -max_target_seqs 1 -outfmt "6 qseqid sseqid evalue pident stitle" -out outputfile.txt`
-
-### Useful links
+### Download and install the programme
 
 - [Download BLAST Software and Databases Documentation](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download)
+
+- [Standalone BLAST Setup for Unix - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK52640/)
+
+- [Standalone BLAST Setup for Windows PC - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK52637/)
+
+### Prepare the query
+
+The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB. Download the query and unzip it into a folder (let's call the folder `blast_pratice` for the purpose of this exercise).
+
+### Prepare the database
+
+The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB. Download it and unzip into the `blast_practice` folder - it will unzip into its own folder called `Dmel_transcripts_Ensembl`.
+
+I originally created the database to map Agilent probes against known and predicted transcripts to eliminate probes that do not align well. I used this data in the upcoming publication (TBA). If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
+
+If you want to download BLAST databases yourself, the best way to do it is to use NCBI's ftp server. I  created a little video guide on how to download BLAST executables and databases: [it is available on Figshare](https://figshare.com/articles/Video_guide_to_downloading_BLAST_executables_and_databases/5411026).
+
+### BLAST off!
+
+To run the BLAST (assuming it is installed), enter the `blast_practice` folder and run a megablast of the query against the database with the following command:
+
+`blastn -task megablast -db Dmel_transcripts_Ensembl/Dmel_genes_all.fa -query blast_query.txt -dust no -max_target_seqs 1 -outfmt "6 qseqid sseqid evalue pident stitle" -out outputfile.txt`
+
+The various options are explained in the presentation and in the section **BLAST options** below.
+
+### Useful links
 
 - [BLAST® Command Line Applications User Manual - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK279690/)
 
@@ -30,15 +44,13 @@ I created those to map Agilent probes agains known and predicted transcripts to 
 
 - [BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK1762/)
 
-- [Standalone BLAST Setup for Unix - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK52640/)
-
-- [Standalone BLAST Setup for Windows PC - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK52637/)
-
 - [Taxonomy browser (Mus musculus)](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=10090&amp;lvl=3&amp;lin=f&amp;keep=1&amp;srchmode=1&amp;unlock)
 
 - [BLAST Glossary - BLAST® Help - NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK62051/)
 
-####BLAST databases available at NCBI
+### BLAST databases available at NCBI
+
+This is copied directly from the NCBI website and it was up to date as of March 6th, 2017.
 
 <pre>
                          The BLAST Databases
@@ -128,14 +140,14 @@ gss.*tar.gz                   | Sequences from the GSS division of GenBank,
                                 EMBL, and DDBJ
 htgs.*tar.gz                  | Sequences from the HTG division of GenBank, EMBL,
                                 and DDBJ
-human_genomic.*tar.gz         | Human RefSeq (NC_######) chromosome records with 
+human_genomic.*tar.gz         | Human RefSeq (NC_### ##) chromosome records with 
                                 gap adjusted concatenated NT_ contigs
 nr.*tar.gz                    | Non-redundant protein sequences from GenPept, 
                                 Swissprot, PIR, PDF, PDB, and NCBI RefSeq
 nt.*tar.gz                    | Partially non-redundant nucleotide sequences from 
                                 all traditional divisions of GenBank, EMBL, and DDBJ 
                                 excluding GSS,STS, PAT, EST, HTG, and WGS.
-other_genomic.*tar.gz         | RefSeq chromosome records (NC_######) for non-human
+other_genomic.*tar.gz         | RefSeq chromosome records (NC_### ##) for non-human
                                 organisms
 pataa.*tar.gz                 | Patent protein sequences
 patnt.*tar.gz                 | Patent nucleotide sequences. Both patent databases
@@ -182,7 +194,7 @@ gss.gz*                 | sequences from the GSS division of GenBank, EMBL,
                           and DDBJ
 htgs.gz*                | sequences from the HTG division of GenBank, EMBL, 
                           and DDBJ 
-human_genomic.gz*       | human RefSeq (NC_######) chromosome records
+human_genomic.gz*       | human RefSeq (NC_### ##) chromosome records
                           with gap adjusted concatenated NT_ contigs 
 igSeqNt.gz              | human and mouse immunoglobulin variable region 
                           nucleotide sequences
@@ -196,7 +208,7 @@ nt.gz*                  | nucleotide sequence database, with entries from all
                           traditional divisions of GenBank, EMBL, and DDBJ; 
                           excluding bulk divisions (gss, sts, pat, est, htg) 
                           and wgs entries. Partially non-redundant.
-other_genomic.gz*       | RefSeq chromosome records (NC_######) for organisms 
+other_genomic.gz*       | RefSeq chromosome records (NC_### ##) for organisms 
                           other than human
 pataa.gz*               | patent protein sequences
 patnt.gz*               | patent nucleotide sequences. Both patent sequence 
@@ -276,7 +288,7 @@ NCBI User Service at:
       info@ncbi.nlm.nih.gov
 </pre>
 
-####BLAST options
+### BLAST options
 
 **DESCRIPTION**
 
@@ -288,164 +300,167 @@ Nucleotide-Nucleotide BLAST 2.2.31+
 
 **OPTIONAL ARGUMENTS**
 
-`-h` Print USAGE and DESCRIPTION; ignore all other parameters
-`-help` Print USAGE, DESCRIPTION and ARGUMENTS; ignore all other parameters
-`-version` Print version number; ignore other arguments
+- `-h` Print USAGE and DESCRIPTION; ignore all other parameters
+- `-help` Print USAGE, DESCRIPTION and ARGUMENTS; ignore all other parameters
+- `-version` Print version number; ignore other arguments
 
-####Input query options
+### Input query options
 
-`-query <File_In>` Input file name; Default = '-'
-`-query_loc <String>` Location on the query sequence in 1-based offsets (Format: start-stop)
-`-strand <String, 'both', 'minus', 'plus'>` Query strand(s) to search against database/subject; Default = 'both'
+- `-query <File_In>` Input file name; Default = '-'
+- `-query_loc <String>` Location on the query sequence in 1-based offsets (Format: start-stop)
+- `-strand <String, 'both', 'minus', 'plus'>` Query strand(s) to search against database/subject; Default = 'both'
 
-####General search options
+### General search options
  
-`-task <String, Permissible values: 'blastn' 'blastn-short' 'dc-megablast' 'megablast' 'rmblastn' >` Task to execute; Default = `megablast`
-`-db <String>` BLAST database name; Incompatible with: `subject, subject_loc`
-`-out <File_Out>` Output file name; Default = `-`
-`-evalue <Real>` Expectation value (E) threshold for saving hits; Default = `10`
-`-word_size <Integer, >=4>` Word size for wordfinder algorithm (length of best perfect match)
-`-gapopen <Integer>` Cost to open a gap
-`-gapextend <Integer>` Cost to extend a gap
-`-penalty <Integer, <=0>` Penalty for a nucleotide mismatch
-`-reward <Integer, >=0>` Reward for a nucleotide match
-`-use_index <Boolean>` Use MegaBLAST database index; Default = `false`
-`-index_name <String>` MegaBLAST database index name
+- `-task <String, Permissible values: 'blastn' 'blastn-short' 'dc-megablast' 'megablast' 'rmblastn' >` Task to execute; Default = `megablast`
+- `-db <String>` BLAST database name; Incompatible with: `subject, subject_loc`
+- `-out <File_Out>` Output file name; Default = - `-`
+- `-evalue <Real>` Expectation value (E) threshold for saving hits; Default = `10`
+- `-word_size <Integer, >=4>` Word size for wordfinder algorithm (length of best perfect match)
+- `-gapopen <Integer>` Cost to open a gap
+- `-gapextend <Integer>` Cost to extend a gap
+- `-penalty <Integer, <=0>` Penalty for a nucleotide mismatch
+- `-reward <Integer, >=0>` Reward for a nucleotide match
+- `-use_index <Boolean>` Use MegaBLAST database index; Default = `false`
+- `-index_name <String>` MegaBLAST database index name
 
-####BLAST-2-Sequences options
+### BLAST-2-Sequences options
  
-`-subject <File_In>` Subject sequence(s) to search; Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask`
-`-subject_loc <String>` Location on the subject sequence in 1-based offsets (Format: start-stop); Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask, remote`
+- `-subject <File_In>` Subject sequence(s) to search; Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask`
+- `-subject_loc <String>` Location on the subject sequence in 1-based offsets (Format: start-stop); Incompatible with: `db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask, remote`
 
-####Formatting options
+### Formatting options
 
-`-outfmt <String>` alignment view options:
- 	`0` = pairwise,
- 	`1` = query-anchored showing identities,
- 	`2` = query-anchored no identities,
- 	`3` = flat query-anchored, show identities,
- 	`4` = flat query-anchored, no identities,
- 	`5` = XML Blast output,
- 	`6` = tabular,
- 	`7` = tabular with comment lines,
- 	`8` = Text ASN.1,
- 	`9` = Binary ASN.1,
- 	`10` = Comma-separated values,
- 	`11` = BLAST archive format (ASN.1),
- 	`12` = JSON Seqalign output,
- 	`13` = JSON Blast output,
- 	`14` = XML2 Blast output
+- `-outfmt <String>` alignment view options:
+	- `0` = pairwise,
+	- `1` = query-anchored showing identities,
+	- `2` = query-anchored no identities,
+	- `3` = flat query-anchored, show identities,
+	- `4` = flat query-anchored, no identities,
+	- `5` = XML Blast output,
+	- `6` = tabular,
+	- `7` = tabular with comment lines,
+	- `8` = Text ASN.1,
+	- `9` = Binary ASN.1,
+	- `10` = Comma-separated values,
+	- `11` = BLAST archive format (ASN.1),
+	- `12` = JSON Seqalign output,
+	- `13` = JSON Blast output,
+	- `14` = XML2 Blast output
  
 Options `6`, `7`, and `10` can be additionally configured to produce a custom format specified by space delimited format specifiers. The supported format specifiers are:
- 	`qseqid` means Query Seq-id
- 	`qgi` means Query GI
- 	`qacc` means Query accesion
- 	`qaccver` means Query accesion.version
- 	`qlen` means Query sequence length
- 	`sseqid` means Subject Seq-id
- 	`sallseqid` means All subject Seq-id(s), separated by a ';'
- 	`sgi` means Subject GI
- 	`sallgi` means All subject GIs
- 	`sacc` means Subject accession
- 	`saccver` means Subject accession.version
- 	`sallacc` means All subject accessions
- 	`slen` means Subject sequence length
- 	`qstart` means Start of alignment in query
- 	`qend` means End of alignment in query
- 	`sstart` means Start of alignment in subject
- 	`send` means End of alignment in subject
- 	`qseq` means Aligned part of query sequence
- 	`sseq` means Aligned part of subject sequence
- 	`value` means Expect value
- 	`bitscore` means Bit score
- 	`score` means Raw score
- 	`length` means Alignment length
- 	`pident` means Percentage of identical matches
- 	`nident` means Number of identical matches
- 	`mismatch` means Number of mismatches
- 	`positive` means Number of positive-scoring matches
- 	`gapopen` means Number of gap openings
- 	`gaps` means Total number of gaps
- 	`ppos` means Percentage of positive-scoring matches
- 	`frames` means Query and subject frames separated by a '/'
- 	`qframe` means Query frame
- 	`sframe` means Subject frame
- 	`btop` means Blast traceback operations (BTOP)
- 	`staxids` means unique Subject Taxonomy ID(s), separated by a ';' (in numerical order)
- 	`sscinames` means unique Subject Scientific Name(s), separated by a ';'
- 	`scomnames` means unique Subject Common Name(s), separated by a ';'
- 	`blastnames` means unique Subject Blast Name(s), separated by a ';' (in alphabetical order)
- 	`sskingdoms` means unique Subject Super Kingdom(s), separated by a ';' (in alphabetical order)
- 	`stitle` means Subject Title
- 	`salltitles` means All Subject Title(s), separated by a '<>'
- 	`sstrand` means Subject Strand
- 	`qcovs` means Query Coverage Per Subject
- 	`qcovhsp` means Query Coverage Per HSP
 
-When not provided, the default value is: `qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore`, which is equivalent to the keyword `std`; 
+- `-outfmt <String>`
+	- `qseqid` means Query Seq-id
+	- `qgi` means Query GI
+	- `qacc` means Query accesion
+	- `qaccver` means Query accesion.version
+	- `qlen` means Query sequence length
+	- `sseqid` means Subject Seq-id
+	- `sallseqid` means All subject Seq-id(s), separated by a ';'
+	- `sgi` means Subject GI
+	- `sallgi` means All subject GIs
+	- `sacc` means Subject accession
+	- `saccver` means Subject accession.version
+	- `sallacc` means All subject accessions
+	- `slen` means Subject sequence length
+	- `qstart` means Start of alignment in query
+	- `qend` means End of alignment in query
+	- `sstart` means Start of alignment in subject
+	- `send` means End of alignment in subject
+	- `qseq` means Aligned part of query sequence
+	- `sseq` means Aligned part of subject sequence
+	- `value` means Expect value
+	- `bitscore` means Bit score
+	- `score` means Raw score
+	- `length` means Alignment length
+	- `pident` means Percentage of identical matches
+	- `nident` means Number of identical matches
+	- `mismatch` means Number of mismatches
+	- `positive` means Number of positive-scoring matches
+	- `gapopen` means Number of gap openings
+	- `gaps` means Total number of gaps
+	- `ppos` means Percentage of positive-scoring matches
+	- `frames` means Query and subject frames separated by a '/'
+	- `qframe` means Query frame
+	- `sframe` means Subject frame
+	- `btop` means Blast traceback operations (BTOP)
+	- `staxids` means unique Subject Taxonomy ID(s), separated by a ';' (in numerical order)
+	- `sscinames` means unique Subject Scientific Name(s), separated by a ';'
+	- `scomnames` means unique Subject Common Name(s), separated by a ';'
+	- `blastnames` means unique Subject Blast Name(s), separated by a ';' (in alphabetical order)
+	- `sskingdoms` means unique Subject Super Kingdom(s), separated by a ';' (in alphabetical order)
+	- `stitle` means Subject Title
+	- `salltitles` means All Subject Title(s), separated by a '<>'
+	- `sstrand` means Subject Strand
+	- `qcovs` means Query Coverage Per Subject
+	- `qcovhsp` means Query Coverage Per HSP
+	- `qcovus` is a measure of Query Coverage that counts a position in a subject sequence for this measure only once. The second time the position is aligned to the query is not counted towards this measure.
 
-`-show_gis` Show NCBI GIs in deflines
-`-num_descriptions <Integer, >=0>` Number of database sequences to show one-line descriptions for; Not applicable for `outfmt >4`; Default = `500`; Incompatible with: `max_target_seqs`
-`-num_alignments <Integer, >=0>` Number of database sequences to show alignments for; Default = `250`; Incompatible with: `max_target_seqs`
-`-line_length <Integer, >=1>` Line length for formatting alignments; Not applicable for `outfmt >4`; Default = `60`
-`-html` Produce HTML output
+When - `-outfmt` options are not specified, the default value is: `qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore`, which is equivalent to the keyword `std`.
 
-####Query filtering options
+- `-show_gis` Show NCBI GIs in deflines
+- `-num_descriptions <Integer, >=0>` Number of database sequences to show one-line descriptions for; Not applicable for `outfmt >4`; Default = `500`; Incompatible with: `max_target_seqs`
+- `-num_alignments <Integer, >=0>` Number of database sequences to show alignments for; Default = `250`; Incompatible with: `max_target_seqs`
+- `-line_length <Integer, >=1>` Line length for formatting alignments; Not applicable for `outfmt >4`; Default = `60`
+- `-html` Produce HTML output
 
-`- <String>` Filter query sequence with DUST (Format: 'yes', 'level window linker', or 'no' to disable); Default = `20 64 1`
-`-filtering_db <String>` BLAST database containing filtering elements (i.e.: repeats)
-`-window_masker_taxid <Integer>` Enable WindowMasker filtering using a Taxonomic ID
-`-window_masker_db <String>` Enable WindowMasker filtering using this repeats database.
-`-soft_masking <Boolean>` Apply filtering locations as soft masks
+### Query filtering options
+
+- `-dust <String>` Filter query sequence with DUST (Format: 'yes', 'level window linker', or 'no' to disable); Default = `20 64 1`
+- `-filtering_db <String>` BLAST database containing filtering elements (i.e.: repeats)
+- `-window_masker_taxid <Integer>` Enable WindowMasker filtering using a Taxonomic ID
+- `-window_masker_db <String>` Enable WindowMasker filtering using this repeats database.
+- `-soft_masking <Boolean>` Apply filtering locations as soft masks
  Default = `true'
-`-lcase_masking
+- `-lcase_masking
  Use lower case filtering in query and subject sequence(s)?
 
-####Restrict search or results
+### Restrict search or results
 
-`-gilist <String>` Restrict search of database to list of GI's; Incompatible with: `negative_gilist, seqidlist, remote, subject, subject_loc`
-`-seqidlist <String>` Restrict search of database to list of SeqId's; Incompatible with: `gilist, negative_gilist, remote, subject, subject_loc`
-`-negative_gilist <String>` Restrict search of database to everything except the listed GIs; Incompatible with: `gilist, seqidlist, remote, subject, subject_loc`
-`-entrez_query <String>` Restrict search with the given Entrez query; Requires: `remote`
-`-db_soft_mask <String>` Filtering algorithm ID to apply to the BLAST database as soft masking; Incompatible with: `db_hard_mask, subject, subject_loc`
-`-db_hard_mask <String>` Filtering algorithm ID to apply to the BLAST database as hard masking; Incompatible with: `db_soft_mask, subject, subject_loc`
-`-perc_identity <Real, 0..100>` Percent identity
-`-qcov_hsp_perc <Real, 0..100>` Percent query coverage per hsp
-`-max_hsps <Integer, >=1>` Set maximum number of HSPs per subject sequence to save for each query
-`-culling_limit <Integer, >=0>` If the query range of a hit is enveloped by that of at least this many higher-scoring hits, delete the hit; Incompatible with: `best_hit_overhang, best_hit_score_edge`
-`-best_hit_overhang <Real, (>0 and <0.5)>` Best Hit algorithm overhang value (recommended value: 0.1); Incompatible with: `culling_limit`
-`-best_hit_score_edge <Real, (>0 and <0.5)>` Best Hit algorithm score edge value (recommended value: 0.1); Incompatible with: `culling_limit`
-`-max_target_seqs <Integer, >=1>` Maximum number of aligned sequences to keep; Not applicable for `outfmt <=4`; Default = `500`; Incompatible with: `num_descriptions, num_alignments`
+- `-gilist <String>` Restrict search of database to list of GI's; Incompatible with: `negative_gilist, seqidlist, remote, subject, subject_loc`
+- `-seqidlist <String>` Restrict search of database to list of SeqId's; Incompatible with: `gilist, negative_gilist, remote, subject, subject_loc`
+- `-negative_gilist <String>` Restrict search of database to everything except the listed GIs; Incompatible with: `gilist, seqidlist, remote, subject, subject_loc`
+- `-entrez_query <String>` Restrict search with the given Entrez query; Requires: `remote`
+- `-db_soft_mask <String>` Filtering algorithm ID to apply to the BLAST database as soft masking; Incompatible with: `db_hard_mask, subject, subject_loc`
+- `-db_hard_mask <String>` Filtering algorithm ID to apply to the BLAST database as hard masking; Incompatible with: `db_soft_mask, subject, subject_loc`
+- `-perc_identity <Real, 0..100>` Percent identity
+- `-qcov_hsp_perc <Real, 0..100>` Percent query coverage per hsp
+- `-max_hsps <Integer, >=1>` Set maximum number of HSPs per subject sequence to save for each query
+- `-culling_limit <Integer, >=0>` If the query range of a hit is enveloped by that of at least this many higher-scoring hits, delete the hit; Incompatible with: `best_hit_overhang, best_hit_score_edge`
+- `-best_hit_overhang <Real, (>0 and <0.5)>` Best Hit algorithm overhang value (recommended value: 0.1); Incompatible with: `culling_limit`
+- `-best_hit_score_edge <Real, (>0 and <0.5)>` Best Hit algorithm score edge value (recommended value: 0.1); Incompatible with: `culling_limit`
+- `-max_target_seqs <Integer, >=1>` Maximum number of aligned sequences to keep; Not applicable for `outfmt <=4`; Default = `500`; Incompatible with: `num_descriptions, num_alignments`
 
-####Discontiguous MegaBLAST options
+### Discontiguous MegaBLAST options
 
-`-template_type <String, coding, coding_and_optimal, optimal>` Discontiguous MegaBLAST template type; Requires: `template_length`
-`-template_length <Integer, Permissible values: 16, 18, 21>` Discontiguous MegaBLAST template length; Requires: `template_type`
+- `-template_type <String, coding, coding_and_optimal, optimal>` Discontiguous MegaBLAST template type; Requires: `template_length`
+- `-template_length <Integer, Permissible values: 16, 18, 21>` Discontiguous MegaBLAST template length; Requires: `template_type`
 
-####Statistical options
+### Statistical options
 
-`-dbsize <Int8>` Effective length of the database 
-`-searchsp <Int8, >`=0>` Effective length of the search space
-`-sum_stats <Boolean>` Use sum statistics
+- `-dbsize <Int8>` Effective length of the database 
+- `-searchsp <Int8, >`=0>` Effective length of the search space
+- `-sum_stats <Boolean>` Use sum statistics
 
-####Search strategy options
+### Search strategy options
 
-`-import_search_strategy <File_In>` Search strategy to use; Incompatible with:  `export_search_strategy`
-`-export_search_strategy <File_Out>` File name to record the search strategy used; Incompatible with: `import_search_strategy`
+- `-import_search_strategy <File_In>` Search strategy to use; Incompatible with:  `export_search_strategy`
+- `-export_search_strategy <File_Out>` File name to record the search strategy used; Incompatible with: `import_search_strategy`
 
-####Extension options
+### Extension options
  
-`-xdrop_ungap <Real>` X-dropoff value (in bits) for ungapped extensions
-`-xdrop_gap <Real>` X-dropoff value (in bits) for preliminary gapped extensions
-`-xdrop_gap_final <Real>` X-dropoff value (in bits) for final gapped alignment
-`-no_greedy` Use non-greedy dynamic programming extension
-`-min_raw_gapped_score <Integer>` Minimum raw gapped score to keep an alignment in the preliminary gapped and traceback stages
-`-ungapped` Perform ungapped alignment only
-`-window_size <Integer, >=0>` Multiple hits window size, use 0 to specify 1-hit algorithm
-`-off_diagonal_range <Integer, >=0>` Number of off-diagonals to search for the 2nd hit, use `0` to turn off; Default = `0`
+- `-xdrop_ungap <Real>` X-dropoff value (in bits) for ungapped extensions
+- `-xdrop_gap <Real>` X-dropoff value (in bits) for preliminary gapped extensions
+- `-xdrop_gap_final <Real>` X-dropoff value (in bits) for final gapped alignment
+- `-no_greedy` Use non-greedy dynamic programming extension
+- `-min_raw_gapped_score <Integer>` Minimum raw gapped score to keep an alignment in the preliminary gapped and traceback stages
+- `-ungapped` Perform ungapped alignment only
+- `-window_size <Integer, >=0>` Multiple hits window size, use 0 to specify 1-hit algorithm
+- `-off_diagonal_range <Integer, >=0>` Number of off-diagonals to search for the 2nd hit, use `0` to turn off; Default = `0`
 
-####Miscellaneous options
+### Miscellaneous options
 
-`-parse_deflines` Should the query and subject defline(s) be parsed?
-`-num_threads <Integer, >=1>` Number of threads (CPUs) to use in the BLAST search; Default = `1`; Incompatible with: `remote`
-`-remote` Execute search remotely?; * Incompatible with: `gilist, seqidlist, negative_gilist, subject_loc, num_threads`
+- `-parse_deflines` Should the query and subject defline(s) be parsed?
+- `-num_threads <Integer, >=1>` Number of threads (CPUs) to use in the BLAST search; Default = `1`; Incompatible with: `remote`
+- `-remote` Execute search remotely?; * Incompatible with: `gilist, seqidlist, negative_gilist, subject_loc, num_threads`
