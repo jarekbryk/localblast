@@ -18,9 +18,9 @@ The query for this exercise is a list of 32162 sequences of all unique oligonucl
 
 ### Prepare the database
 
-The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://figshare.com/account/projects/23962/articles/5306095) and the compressed file is approximately 100 MB. Download it and unzip into the `blast_practice` folder - it will unzip into its own folder called `Dmel_transcripts_Ensembl`.
+The database contains list of all known and predicted transcripts from _D. melanogaster_ in the Ensembl format, as downloaded in March 2017. The database is [available to download from Figshare](https://ndownloader.figshare.com/files/9092776) and the compressed file is approximately 100 MB. Download it and unzip into the `blast_practice` folder - it will unzip into its own folder called `Dmel_transcripts_Ensembl`.
 
-I originally created the database to map Agilent probes against known and predicted transcripts to eliminate probes that do not align well. I used this data in the upcoming publication (TBA). If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
+I originally created the database to map Agilent probes against known and predicted transcripts to eliminate probes that do not align well. I used this data in the Bryk _et al._ 2017 paper [Transcriptional effects of a positive feedback circuit in _Drosophila melanogaster_](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-017-4385-z). If I have some time, I may reduce both the queries and the database for easier sharing and downloading.
 
 If you want to download BLAST databases yourself, the best way to do it is to use NCBI's ftp server. I  created a little video guide on how to download BLAST executables and databases: [it is available on Figshare](https://figshare.com/articles/Video_guide_to_downloading_BLAST_executables_and_databases/5411026).
 
