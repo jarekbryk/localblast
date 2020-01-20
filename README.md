@@ -6,6 +6,12 @@ I included a short presentation on BLAST and the syntax of its run, as well as a
 
 #### Important update
 
+**Update to the update :-)**
+
+The issue described below has been resolved and is described by [Madden TL _et al._ in _Bioinformatics_ (2019), 35:15, 2699–2700](https://academic.oup.com/bioinformatics/article/35/15/2699/5259186). Briefly, the behaviour was a bug affecting specific cases (but not all cases) of BLAST+. If `-max_target_seqs` was set to 1 but multiple equivalent hits were present in the database, _the order of these hits in the database_ decides which one is reported by BLAST+. Current versions of BLAST+ provide a warning when `-max_target_seqs` is set below 5.
+
+**End of update to the update**
+
 Apparently, as of September 2018, the local version of BLAST has a function that behaves differently from the identically named function in the online version of BLAST. Option `-max_target_seqs` specifies N number of sequences returned in the output. In the local BLAST, it simply returns the N hits above the e value threshold, irrespectively of the BLAST score or the actual e value. In the online version of the BLAST, the same function returns the N top hits by score (which is what many people assume it should do). This has been very recently reported by Shah N. _et al._ in [Misunderstood parameter of NCBI BLAST impacts the correctness of bioinformatics workflows](https://academic.oup.com/bioinformatics/advance-article-abstract/doi/10.1093/bioinformatics/bty833/5106166?redirectedFrom=fulltext). See also post by Peter Cock [What BLAST's max-target-sequences doesn't do](https://blastedbio.blogspot.com/2015/12/blast-max-target-sequences-bug.html) and Sujai Kumar's [report at Github](https://gist.github.com/sujaikumar/504b3b7024eaf3a04ef5) for a bit more nuanced description of the behaviour. I also note that Peter's and Sujai's report do not suggest a different behaviour between online and local versions of the BLAST.
 
 In my guidelines below, the local BLAST is run with `-max_target_seqs` set to 1. Contrary to my assumption, it does not necessarily return the best hit. As this behaviour is still being investigated, the safest solution currently is to run your local blast several times, with `-max_target_seqs` set to different values (depending on the size of your database) and then rank the output by score and e value for every query ID. Proceed with caution.
@@ -20,7 +26,7 @@ In my guidelines below, the local BLAST is run with `-max_target_seqs` set to 1.
 
 ### Prepare the query
 
-The query for this exercise is a list of 32162 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 2.4 MB. Download the query and unzip it into a folder (let's call the folder `blast_pratice` for the purpose of this exercise).
+The query for this exercise is a set of 1000 sequences of all unique oligonucleotide probes from [Agilent's _D. melanogaster_ gene expression microarray](http://www.genomics.agilent.com/en/Gene-Expression-Model-Organism-Non-Human-Microarrays/Model-Org-Non-Human-GeneEx-Microarrays/) in a multi-fasta format. The query is included in this repository directly and is called `blast_query.tar.gz`. Uncompressed file is 34 kB. Download the query and unzip it into a folder (let's call the folder `blast_pratice` for the purpose of this exercise).
 
 ### Prepare the database
 
@@ -100,7 +106,7 @@ the script without any arguments; Perl installation is required.
 The compressed files downloaded must be inflated with gzip or other decompress
 tools. The BLAST database files can then be extracted out of the resulting tar
 file using the tar utility on Unix/Linux, or WinZip and StuffIt Expander on
-Windows and Macintosh platforms, respectively.  
+Windows and Macintosh platforms, respectively.
 
 Large databases are formatted in multiple one-gigabyte volumes, which are named
 using the basename.##.tar.gz convention. All volumes with the same base name are
@@ -120,7 +126,7 @@ The pre-formatted BLAST databases are archived in this directory. The names of
 these databases and their contents are listed below.
 
 +-----------------------------+------------------------------------------------+
- File Name                    | Content Description                           
+ File Name                    | Content Description
 +-----------------------------+------------------------------------------------+
 16SMicrobial.tar.gz	          | Bacterial and Archaeal 16S rRNA sequences from
                                 BioProjects 33175 and 33117
@@ -189,7 +195,7 @@ processed through blastdbcmd before they can be used by the BLAST programs.
 +-----------------------+-----------------------------------------------------+
 alu.a.gz                | translation of alu.n repeats
 alu.n.gz                | alu repeat elements (from 2003)
-drosoph.aa.gz           | CDS translations from drosophila.nt  
+drosoph.aa.gz           | CDS translations from drosophila.nt
 drosoph.nt.gz           | genomic sequences for drosophila (from 2003)
 env_nr.gz*              | Protein sequences for metagenomes, taxid 408169
 env_nt.gz*              | Nucleotide sequences for metagenomes, taxid 408169
@@ -261,7 +267,7 @@ EPLSNLDANLRRSMREKIRELQQRLGITSLYVTHDQTEAFAVSDEVIVMNKGTIMQKARQKIFIYDRILYSLRNFMGEST
 ICDGNLNQGTVSIGDYRFPLHNAADFSVADGACLVGVRPEAIRLTATGETSQRCQIKSAVYMGNHWEIVANWNGKDVLIN
 ANPDQFDPDATKAFIHFTEQGIFLLNKE
 
-Individual sequences are now identifed simply by their accession.version.  
+Individual sequences are now identifed simply by their accession.version.
 
 For databases whose entries are not from official NCBI sequence databases,
 such as Trace database, the gnl| convention is used. For custom databases,
